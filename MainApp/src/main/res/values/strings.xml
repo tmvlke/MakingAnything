@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">아무 작품</string>
+
+    <string name="network_not_found_content">인터넷 연결 상태를 확인해주세요.</string>
+    <string name="network_not_found_ok_text">확인</string>
+
+    <string name="content_title_image_format">(이미지) %1$s</string>
+    <string name="content_title_vclip_format">(비디오) %1$s</string>
+
+    <string name="content_time_format">콘텐츠 등록 일자: %1$s</string>
+    <string name="content_bucket_time_format">보관함 저장 일자: %1$s</string>
+
+    <string name="toastBucketOn">%1$s를 보관함에 저장 하였습니다.</string>
+    <string name="toastBucketOff">%1$s를 보관함에서 제거 하였습니다.</string>
+
+    <string name="content_bucket_on">담기</string>
+    <string name="content_bucket_off">해제</string>
+    <string name="lbSearchKeywordEmpty">검색어를 입력해주세요.</string>
+    <string name="LbRecommendSearchKeyword">추천 검색어</string>
+    <string name="LbBtnSearchKeyword">검색</string>
+    <string name="LbSearchKeywordRemove">검색어 제거 버튼</string>
+    <string name="DummyTitle">타이틀</string>
+    <string name="DummyDateTime">2023년 1월 2일</string>
+    <string name="LbContentImage">콘텐츠 이미지</string>
+    <string name="DummyMessage">메세지</string>
+    <string name="LbSayNo">아니오</string>
+    <string name="LbSayYes">네</string>
+    <string name="LbSplashImage">스플래시 이미지</string>
+    <string name="LbSearchResultTab">검색 결과</string>
+    <string name="LbBucketTab">내 보관함</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
