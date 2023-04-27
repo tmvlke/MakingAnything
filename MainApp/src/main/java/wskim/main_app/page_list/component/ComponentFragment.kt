@@ -9,9 +9,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
+import dagger.hilt.android.AndroidEntryPoint
 import wskim.main_app.ui.theme.MakingAnythingTheme
 
-
+@AndroidEntryPoint
 class ComponentFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +34,6 @@ class ComponentFragment : Fragment() {
     @Preview(showBackground = true)
     @Composable
     fun SetMyContentView() {
-        MakingAnythingTheme {
-            Text(text = "ComponentFragment")
-        }
+        Text(text = "ComponentFragment")
     }
 }

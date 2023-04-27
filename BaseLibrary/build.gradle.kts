@@ -23,6 +23,11 @@ android {
         }
     }
 
+    buildFeatures {
+        // AGP 9.0 이전까지만 사용하기
+        buildConfig = true
+    }
+
     compileOptions {
         sourceCompatibility(JavaVersion.VERSION_17)
         targetCompatibility(JavaVersion.VERSION_17)

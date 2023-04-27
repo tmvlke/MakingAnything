@@ -146,9 +146,6 @@ android {
         // AGP 9.0 이전까지만 사용하기
         buildConfig = true
 
-        viewBinding = true
-        dataBinding = true
-
         // compose 활성화 시 주석 풀기
         compose = true
 

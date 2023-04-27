@@ -35,8 +35,6 @@ class EtcFragment : BaseSupportFragment() {
     @Preview(showBackground = true)
     @Composable
     fun SetMyContentView() {
-        MakingAnythingTheme {
-            Text(text = "EtcFragment")
-        }
+        Text(text = "EtcFragment")
     }
 }
