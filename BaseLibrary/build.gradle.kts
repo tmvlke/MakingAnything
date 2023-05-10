@@ -32,6 +32,7 @@ android {
         sourceCompatibility(JavaVersion.VERSION_17)
         targetCompatibility(JavaVersion.VERSION_17)
     }
+    buildToolsVersion = "34.0.0 rc3"
 //    kotlinOptions {
 //        jvmTarget = "17"
 //    }
@@ -42,7 +43,7 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.0")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.21")
 
     // okhttp
     api("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
@@ -54,8 +55,8 @@ dependencies {
     api("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 
     // coroutines
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0")
 
     // glide
     api("com.github.bumptech.glide:glide:4.15.1")

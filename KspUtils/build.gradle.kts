@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0")
-    implementation("com.google.devtools.ksp:symbol-processing-api:1.8.0-1.0.8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.21")
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.8.21-1.0.11")
 }

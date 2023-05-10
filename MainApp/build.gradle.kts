@@ -17,7 +17,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.7.0-alpha02")
-    implementation("com.google.android.material:material:1.8.0")
+    implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
@@ -32,9 +32,9 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.1")
     implementation("androidx.fragment:fragment-ktx:1.6.0-beta01")
 
-    implementation("com.google.dagger:hilt-android:2.45")
+    implementation("com.google.dagger:hilt-android:2.46")
     implementation("androidx.test.espresso:espresso-contrib:3.5.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.45")
+    kapt("com.google.dagger:hilt-android-compiler:2.46")
 
     implementation("org.greenrobot:eventbus:3.3.1")
 
@@ -42,7 +42,7 @@ dependencies {
 
     // compose
     implementation("androidx.activity:activity-compose:1.7.1")
-    implementation(platform("androidx.compose:compose-bom:2022.10.00"))
+    implementation(platform("androidx.compose:compose-bom:2023.05.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -64,10 +64,10 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // test
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.3")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4") {
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.0") {
         // https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-debug#debug-agent-and-android
         exclude(
             group = "org.jetbrains.kotlinx",
@@ -75,16 +75,16 @@ dependencies {
         )
     }
     testImplementation("androidx.arch.core:core-testing:2.2.0")
-    testImplementation("io.mockk:mockk:1.13.2")
+    testImplementation("io.mockk:mockk:1.13.5")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
-    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.3")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.9.3")
 
     // android test
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
+    androidTestImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
     androidTestImplementation("de.mannodermaus.junit5:android-test-core:1.3.0")
 
     androidTestRuntimeOnly("de.mannodermaus.junit5:android-test-runner:1.3.0")
@@ -94,7 +94,7 @@ dependencies {
 android {
     namespace = "wskim.main_app"
     compileSdk = 33
-    buildToolsVersion = "33.0.0 rc2"
+    buildToolsVersion = "34.0.0 rc3"
     ndkVersion = "25.1.8937393"
 
     defaultConfig {
