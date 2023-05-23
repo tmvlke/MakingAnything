@@ -55,8 +55,8 @@ dependencies {
     api("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 
     // coroutines
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
     // glide
     api("com.github.bumptech.glide:glide:4.15.1")

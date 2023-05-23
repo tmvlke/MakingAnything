@@ -14,9 +14,9 @@
         android:theme="@style/Theme.MakingAnything"
         tools:targetApi="31">
 
-        <activity android:name=".page_list.MainActivity"/>
+        <activity android:name=".navigation.MainActivity"/>
         <activity
-            android:name=".page_list.SplashActivity"
+            android:name=".navigation.SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Starting">
