@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("com.google.devtools.ksp")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("de.mannodermaus.android-junit5")
@@ -10,9 +9,6 @@ plugins {
 dependencies {
     implementation(project(":BaseLibrary"))
     implementation(project(":CoreFeature"))
-
-//    implementation(project(":KspUtils"))
-//    ksp(project(":KspUtils"))
 
 
     implementation("androidx.core:core-ktx:1.10.1")
@@ -54,9 +50,13 @@ dependencies {
     implementation("androidx.compose.foundation:foundation")
     implementation("androidx.navigation:navigation-compose:2.6.0-rc01")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.compose.compiler:compiler:1.4.7")
     implementation("com.google.accompanist:accompanist-navigation-animation:0.31.2-alpha")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha09")
 
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation("androidx.paging:paging-runtime-ktx:3.1.1")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha19")
 
     // view pager
     // https://google.github.io/accompanist/pager/
@@ -166,8 +166,6 @@ android {
 
             sourceSets {
                 getByName("main") {
-//                    kotlin.srcDir("build/generated/ksp/${flavorType}Release/kotlin")
-                    java.srcDir(File("build/generated/ksp/dev${buildType}/kotlin"))
                 }
             }
         }
@@ -176,8 +174,6 @@ android {
 
             sourceSets {
                 getByName("main") {
-//                    kotlin.srcDir("build/generated/ksp/${flavorType}Release/kotlin")
-                    java.srcDir(File("build/generated/ksp/prod${buildType}/kotlin"))
                 }
             }
         }
@@ -197,8 +193,4 @@ android {
 //    kotlin {
 //        jvmToolchain(11)
 //    }
-}
-
-ksp {
-    arg("projectName", "wskim.main_app")
 }

@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import wskim.main_app.navigation.MainActions
-import wskim.main_app.navigation.dto.ComponentDetailDTO
+import wskim.main_app.core.navigation.MainActions
+import wskim.main_app.core.navigation.dto.ComponentDetailDTO
+import wskim.main_app.mvvm.viewmodel.ComponentViewModel
+import wskim.main_app.mvvm.viewmodel.EtcViewModel
 import wskim.main_app.ui.LI_OnlyTextOfNumbering
-import wskim.main_app.viewmodel.ComponentViewModel
-import wskim.main_app.viewmodel.EtcViewModel
 
 @SuppressLint("UnrememberedMutableState")
 @Preview(showBackground = true)

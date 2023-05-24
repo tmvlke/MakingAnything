@@ -17,4 +17,3 @@ rootProject.name = "making-anything"
 include(":MainApp")
 include(":CoreFeature")
 include(":BaseLibrary")
-include(":KspUtils")
