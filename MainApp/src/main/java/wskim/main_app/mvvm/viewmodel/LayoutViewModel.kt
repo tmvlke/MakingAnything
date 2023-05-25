@@ -34,8 +34,9 @@ class LayoutViewModel @Inject constructor(
 
     private fun initLayoutList() : ArrayList<LayoutListVO> {
         return arrayListOf(
-            LayoutListVO(text = "constraint layout", screen = LayoutDetailDTO.Screen.ConstraintLayout),
+            LayoutListVO(text = "ConstraintLayout", screen = LayoutDetailDTO.Screen.ConstraintLayout),
             LayoutListVO(text = "리스트 무한 스크롤(paging3)", screen = LayoutDetailDTO.Screen.ListInfinityScrollPaging3),
+            LayoutListVO(text = "CoordinatorLayout", screen = LayoutDetailDTO.Screen.CoordinatorLayout),
         ).apply {
             this.forEachIndexed { index, layoutListVO ->
                 layoutListVO.index = index

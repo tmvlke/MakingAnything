@@ -6,6 +6,7 @@ data class LayoutDetailDTO(
     enum class Screen {
         ConstraintLayout,
         ListInfinityScrollPaging3,
+        CoordinatorLayout,
 
         None,
     }

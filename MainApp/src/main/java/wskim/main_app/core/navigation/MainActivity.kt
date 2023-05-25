@@ -27,6 +27,7 @@ import wskim.main_app.mvvm.viewmodel.LayoutViewModel
 import wskim.main_app.mvvm.viewmodel.LibraryViewModel
 import wskim.main_app.page_list.MainPage
 import wskim.main_app.page_list.component.ComponentDetailPage
+import wskim.main_app.page_list.layout.detail.LayoutCoordinatorLayout
 import wskim.main_app.page_list.layout.detail.LayoutExampleConstraint
 import wskim.main_app.page_list.layout.detail.LayoutExampleInfinityScrollPaging3
 
@@ -112,6 +113,10 @@ fun NavGraph() {
                 }
                 LayoutDetailDTO.Screen.ConstraintLayout -> LayoutExampleConstraint(actions)
                 LayoutDetailDTO.Screen.ListInfinityScrollPaging3 -> LayoutExampleInfinityScrollPaging3(
+                    hiltViewModel(it),
+                    actions
+                )
+                LayoutDetailDTO.Screen.CoordinatorLayout -> LayoutCoordinatorLayout(
                     hiltViewModel(it),
                     actions
                 )
