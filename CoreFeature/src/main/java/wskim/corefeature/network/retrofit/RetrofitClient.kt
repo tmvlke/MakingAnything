@@ -36,7 +36,7 @@ class RetrofitClient(serverUrl:String, forceUseInterceptor: Boolean? = null) {
                             .build()
                 }
 
-        SSLContext.getInstance("TLSv1.3")
+//        SSLContext.getInstance("TLSv1.3")
 
 
         val retrofit = Retrofit.Builder()

@@ -1,22 +1,23 @@
 package wskim.main_app.page_list.library
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import wskim.main_app.core.navigation.MainActions
-import wskim.main_app.core.navigation.dto.ComponentDetailDTO
-import wskim.main_app.mvvm.viewmodel.ComponentViewModel
+import wskim.main_app.core.navigation.dto.LibraryDetailDTO
 import wskim.main_app.mvvm.viewmodel.LibraryViewModel
-import wskim.main_app.ui.LI_OnlyTextOfNumbering
+import wskim.main_app.ui.ActionBarTitleSearchBtn
+import wskim.main_app.ui.LI_TextOfNumberingAndViewCount
 
 @SuppressLint("UnrememberedMutableState")
 @Preview(showBackground = true)
@@ -25,53 +26,41 @@ fun LibraryPage(
     viewModel: LibraryViewModel = LibraryViewModel(null),
     actions: MainActions? = null
 ) {
-    LazyColumn(
-        contentPadding = PaddingValues(16.dp, 8.dp),
-        modifier = Modifier.fillMaxSize()
+
+    val context = LocalContext.current
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
     ) {
 
-//            items(
-//                viewmodel.componentList.value
-//            ) {
-//                Text(text = it)
-//            }
+        val inputText = remember { mutableStateOf("") }
+        ActionBarTitleSearchBtn(inputText = inputText)
 
-        itemsIndexed(
-            viewModel.componentList
-        ) { index, item ->
-            LI_OnlyTextOfNumbering(
-                index = index,
-                text = item,
-                itemClick = {
-                    viewModel.itemClick(index)
-                    actions?.gotoComponentDetail?.invoke(
-                        ComponentDetailDTO(
-                            id = System.currentTimeMillis().toInt(),
-                            name = "됨?"
-                        )
-                    )
-                }
-            )
+        LazyColumn(
+//            contentPadding = PaddingValues(20.dp, 0.dp),
+            modifier = Modifier.fillMaxWidth().weight(1f)
+        ) {
+
+            items(
+                viewModel.libraryList
+            ) { item ->
+                LI_TextOfNumberingAndViewCount(
+                    index = item.index,
+                    text = item.text,
+                    viewCount = item.viewCount,
+                    itemClick = {
+                        if(item.index == -1) {
+                            Toast.makeText(context, "아직 고민 중인 레이아웃 입니다.", Toast.LENGTH_SHORT).show()
+                            return@LI_TextOfNumberingAndViewCount
+                        }
+
+                        viewModel.itemClick(item.index)
+                        actions?.gotoLibraryDetail?.invoke(LibraryDetailDTO(item.screen))
+                    }
+                )
+            }
         }
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun LibraryDetailPage(
-    viewModel: ComponentViewModel = ComponentViewModel(null),
-    actions: MainActions? = null
-) {
-    Column(
-        modifier = Modifier.fillMaxSize().background(color = Color.White)
-    ) {
-        LI_OnlyTextOfNumbering(
-            index = viewModel.id.value,
-            text = viewModel.name.value,
-//        itemClick = {
-//            viewModel.itemClick(index)
-//            actions?.gotoComponentDetail?.invoke("1")
-//        }
-        )
-    }
 }

@@ -3,15 +3,17 @@ package wskim.main_app.mvvm.viewmodel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import wskim.main_app.core.navigation.dto.LibraryDetailDTO
-import wskim.main_app.mvvm.repository.SearchResultRepository
+import wskim.main_app.mvvm.repository.LibraryRoomRepository
 import wskim.main_app.page_list.library.vo.LibraryListVO
 import javax.inject.Inject
 
 @HiltViewModel
-class LibraryViewModel @Inject constructor(
-    private val repository: SearchResultRepository?
+class LibraryRoomViewModel @Inject constructor(
+    private val repository: LibraryRoomRepository?
 ) : ViewModel(){
 
     val libraryList : SnapshotStateList<LibraryListVO> = mutableStateListOf()
@@ -29,6 +31,10 @@ class LibraryViewModel @Inject constructor(
         } else {
             // normal
             libraryList.addAll(initLibraryList())
+
+            viewModelScope.launch {
+                repository.selectDummyData(1)
+            }
         }
 
     }

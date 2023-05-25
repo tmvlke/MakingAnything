@@ -26,7 +26,6 @@ import wskim.baselibrary.ui.MainTab
 import wskim.corefeature.BaseLog
 import wskim.main_app.core.navigation.MainActions
 import wskim.main_app.mvvm.viewmodel.ComponentViewModel
-import wskim.main_app.mvvm.viewmodel.EtcViewModel
 import wskim.main_app.mvvm.viewmodel.LayoutViewModel
 import wskim.main_app.mvvm.viewmodel.LibraryViewModel
 import wskim.main_app.page_list.component.ComponentPage
@@ -42,7 +41,6 @@ fun MainPage(
     layoutViewModel: LayoutViewModel = LayoutViewModel(null),
     componentViewModel: ComponentViewModel = ComponentViewModel(null),
     libraryViewModel: LibraryViewModel = LibraryViewModel(null),
-    etcViewModel: EtcViewModel = EtcViewModel(null),
     actions: MainActions? = null,
 ) {
 
@@ -75,7 +73,7 @@ fun MainPage(
                         MainTab.Layout.ordinal -> LayoutPage(layoutViewModel, actions)
                         MainTab.Component.ordinal -> ComponentPage(componentViewModel, actions)
                         MainTab.Library.ordinal -> LibraryPage(libraryViewModel, actions)
-                        MainTab.Etc.ordinal -> EtcPage(etcViewModel, actions)
+                        MainTab.Etc.ordinal -> EtcPage(actions)
                     }
                 }
 

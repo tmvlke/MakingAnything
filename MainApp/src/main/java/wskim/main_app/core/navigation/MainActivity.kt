@@ -21,8 +21,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import wskim.main_app.core.common.BaseCompatActivity
 import wskim.main_app.core.navigation.dto.ComponentDetailDTO
 import wskim.main_app.core.navigation.dto.LayoutDetailDTO
+import wskim.main_app.core.navigation.dto.LibraryDetailDTO
 import wskim.main_app.mvvm.viewmodel.ComponentViewModel
-import wskim.main_app.mvvm.viewmodel.EtcViewModel
 import wskim.main_app.mvvm.viewmodel.LayoutViewModel
 import wskim.main_app.mvvm.viewmodel.LibraryViewModel
 import wskim.main_app.page_list.MainPage
@@ -30,6 +30,7 @@ import wskim.main_app.page_list.component.ComponentDetailPage
 import wskim.main_app.page_list.layout.detail.LayoutCoordinatorLayout
 import wskim.main_app.page_list.layout.detail.LayoutExampleConstraint
 import wskim.main_app.page_list.layout.detail.LayoutExampleInfinityScrollPaging3
+import wskim.main_app.page_list.library.detail.LibraryRoom
 
 @AndroidEntryPoint
 class MainActivity : BaseCompatActivity() {
@@ -75,15 +76,10 @@ fun NavGraph() {
                 factory = HiltViewModelFactory(context, it)
             )
 
-            val etcViewModel: EtcViewModel = viewModel(
-                factory = HiltViewModelFactory(context, it)
-            )
-
             MainPage(
                 layoutViewModel,
                 componentViewModel,
                 libraryViewModel,
-                etcViewModel,
                 actions
             )
         }
@@ -166,6 +162,37 @@ fun NavGraph() {
 
             ComponentDetailPage(viewModel, actions)
         }
+
+        ///////////////////////////////////////////////////////
+        // 메인 페이지 -> 컴포넌트 탭 상세 페이지
+        ///////////////////////////////////////////////////////
+        val libraryDetail = ScreenList.LibraryDetail
+        composable(
+            "${libraryDetail.name}/{${libraryDetail.argName}}",
+            arguments = listOf(navArgument(ScreenList.LibraryDetail.name) { type = NavType.StringType }),
+            enterTransition = {
+                slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Up, animationSpec = tween(700))
+            },
+            exitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Down, animationSpec = tween(700))
+            },
+        ) {
+
+            val data = ScreenBundleUtils.parse<LibraryDetailDTO>(
+                it.arguments?.getString(libraryDetail.argName)
+                    ?: throw IllegalStateException("LayoutDetailDTO data null")
+            )
+
+            when(data.screen) {
+                LibraryDetailDTO.Screen.None -> {
+                    actions.upPress.invoke()
+                }
+                LibraryDetailDTO.Screen.Room -> LibraryRoom(
+                    hiltViewModel(it),
+                    actions
+                )
+            }
+        }
     }
 }
 
@@ -189,6 +216,12 @@ class MainActions(navController: NavController) {
     val gotoComponentDetail: (ComponentDetailDTO) -> Unit = { dto ->
         navController.navigate(
             "${ScreenList.ComponentDetail.name}/${ScreenBundleUtils.build(dto)}"
+        )
+    }
+
+    val gotoLibraryDetail: (LibraryDetailDTO) -> Unit = { dto ->
+        navController.navigate(
+            "${ScreenList.LibraryDetail.name}/${ScreenBundleUtils.build(dto)}"
         )
     }
 }

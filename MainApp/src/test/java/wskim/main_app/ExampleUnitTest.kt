@@ -2,20 +2,17 @@ package wskim.main_app
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
-import wskim.corefeature.preferences.SharedPreferencesManager
 import wskim.main_app.mvvm.repository.LayoutExampleInfinityScrollRepository
 import wskim.main_app.mvvm.viewmodel.LayoutExampleInfinityScrollViewModel
 

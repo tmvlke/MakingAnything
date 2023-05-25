@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -46,6 +48,19 @@ dependencies {
     // SharedPreferences
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("com.localebro:okhttpprofiler:1.0.8")
+
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    implementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.46.1")
+
+    val room_version = "2.5.0"
+
+    api("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
