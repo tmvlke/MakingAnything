@@ -5,6 +5,7 @@ data class LibraryDetailDTO(
 ) {
     enum class Screen {
         Room,
+        Lottie,
 
         None,
     }

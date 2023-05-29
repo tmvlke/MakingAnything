@@ -1,12 +1,16 @@
 package wskim.main_app.page_list
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PageSize
+import androidx.compose.foundation.pager.PagerDefaults
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Tab
@@ -44,10 +48,10 @@ fun MainPage(
     actions: MainActions? = null,
 ) {
 
-    val tabPagerState = rememberPagerState()
-    val coroutineScope = rememberCoroutineScope()
-
     val tabs = MainTab.values().toList()
+
+    val tabPagerState = rememberPagerState { tabs.size }
+    val coroutineScope = rememberCoroutineScope()
 
     MakingAnythingTheme {
         Column(
@@ -61,21 +65,33 @@ fun MainPage(
                     .fillMaxWidth()
             ) {
 
+                // Our page content
                 HorizontalPager(
-                    pageCount = tabs.size,
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
-                    state = tabPagerState
-                ) { page ->
-                    // Our page content
-                    when (page) {
-                        MainTab.Layout.ordinal -> LayoutPage(layoutViewModel, actions)
-                        MainTab.Component.ordinal -> ComponentPage(componentViewModel, actions)
-                        MainTab.Library.ordinal -> LibraryPage(libraryViewModel, actions)
-                        MainTab.Etc.ordinal -> EtcPage(actions)
+                    state = tabPagerState,
+                    pageSpacing = 0.dp,
+                    userScrollEnabled = true,
+                    reverseLayout = false,
+                    contentPadding = PaddingValues(0.dp),
+                    beyondBoundsPageCount = 0,
+                    pageSize = PageSize.Fill,
+                    flingBehavior = PagerDefaults.flingBehavior(state = tabPagerState),
+                    key = null,
+                    pageNestedScrollConnection = PagerDefaults.pageNestedScrollConnection(
+                        Orientation.Horizontal
+                    ),
+                    pageContent = { page ->
+                        // Our page content
+                        when (page) {
+                            MainTab.Layout.ordinal -> LayoutPage(layoutViewModel, actions)
+                            MainTab.Component.ordinal -> ComponentPage(componentViewModel, actions)
+                            MainTab.Library.ordinal -> LibraryPage(libraryViewModel, actions)
+                            MainTab.Etc.ordinal -> EtcPage(actions)
+                        }
                     }
-                }
+                )
 
                 Divider(color = Color.Gray, thickness = 1.dp)
 

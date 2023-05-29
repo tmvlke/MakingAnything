@@ -36,6 +36,7 @@ class LibraryViewModel @Inject constructor(
     private fun initLibraryList() : ArrayList<LibraryListVO> {
         return arrayListOf(
             LibraryListVO(text = "Room", screen = LibraryDetailDTO.Screen.Room),
+            LibraryListVO(text = "Lottie", screen = LibraryDetailDTO.Screen.Lottie),
         ).apply {
             this.forEachIndexed { index, layoutListVO ->
                 layoutListVO.index = index

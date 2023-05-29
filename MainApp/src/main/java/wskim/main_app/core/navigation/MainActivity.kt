@@ -13,6 +13,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavType
+import androidx.navigation.compose.dialog
 import androidx.navigation.navArgument
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -27,9 +28,11 @@ import wskim.main_app.mvvm.viewmodel.LayoutViewModel
 import wskim.main_app.mvvm.viewmodel.LibraryViewModel
 import wskim.main_app.page_list.MainPage
 import wskim.main_app.page_list.component.ComponentDetailPage
+import wskim.main_app.page_list.etc.EtcPopupScreen
 import wskim.main_app.page_list.layout.detail.LayoutCoordinatorLayout
 import wskim.main_app.page_list.layout.detail.LayoutExampleConstraint
 import wskim.main_app.page_list.layout.detail.LayoutExampleInfinityScrollPaging3
+import wskim.main_app.page_list.library.detail.LibraryLottie
 import wskim.main_app.page_list.library.detail.LibraryRoom
 
 @AndroidEntryPoint
@@ -85,11 +88,29 @@ fun NavGraph() {
         }
 
         ///////////////////////////////////////////////////////
+        // 팝업 페이지
+        ///////////////////////////////////////////////////////
+        dialog(
+            "popup/{PopupList}",
+            arguments = listOf(navArgument("PopupList") { type = NavType.StringType }),
+        ) {
+
+            val data = ScreenBundleUtils.parse<PopupList>(
+                it.arguments?.getString("PopupList")
+                    ?: throw IllegalStateException("PopupList data null")
+            )
+
+            when(data) {
+                PopupList.EtcTodoList -> EtcPopupScreen(onDismiss = { navController.popBackStack() })
+            }
+        }
+
+        ///////////////////////////////////////////////////////
         // 메인 페이지 -> 레이아웃 탭의 상세 페이지
         ///////////////////////////////////////////////////////
         val layoutDetail = ScreenList.LayoutDetail
         composable(
-            "${layoutDetail.name}/{${layoutDetail.argName}}",
+            "${layoutDetail.name}/{${layoutDetail.name}}",
             arguments = listOf(navArgument(ScreenList.LayoutDetail.name) { type = NavType.StringType }),
             enterTransition = {
                 slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Up, animationSpec = tween(700))
@@ -99,7 +120,7 @@ fun NavGraph() {
             },
         ) {
             val data = ScreenBundleUtils.parse<LayoutDetailDTO>(
-                it.arguments?.getString(layoutDetail.argName)
+                it.arguments?.getString(layoutDetail.name)
                     ?: throw IllegalStateException("LayoutDetailDTO data null")
             )
 
@@ -124,8 +145,8 @@ fun NavGraph() {
         ///////////////////////////////////////////////////////
         val componentDetail = ScreenList.ComponentDetail
         composable(
-            "${componentDetail.name}/{${componentDetail.argName}}",
-            arguments = listOf(navArgument(ScreenList.ComponentDetail.name) { type = NavType.StringType }),
+            "${componentDetail.name}/{${componentDetail.name}}",
+            arguments = listOf(navArgument(componentDetail.name) { type = NavType.StringType }),
 //            enterTransition = {
 //                slideInVertically (
 //                    initialOffsetY = { fullWidth -> fullWidth },
@@ -153,7 +174,7 @@ fun NavGraph() {
         ) {
             val viewModel = hiltViewModel<ComponentViewModel>(it)
             val data = ScreenBundleUtils.parse<ComponentDetailDTO>(
-                it.arguments?.getString(componentDetail.argName)
+                it.arguments?.getString(componentDetail.name)
                     ?: throw IllegalStateException("ComponentDetailDTO data null")
             )
 
@@ -168,8 +189,8 @@ fun NavGraph() {
         ///////////////////////////////////////////////////////
         val libraryDetail = ScreenList.LibraryDetail
         composable(
-            "${libraryDetail.name}/{${libraryDetail.argName}}",
-            arguments = listOf(navArgument(ScreenList.LibraryDetail.name) { type = NavType.StringType }),
+            "${libraryDetail.name}/{${libraryDetail.name}}",
+            arguments = listOf(navArgument(libraryDetail.name) { type = NavType.StringType }),
             enterTransition = {
                 slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Up, animationSpec = tween(700))
             },
@@ -179,7 +200,7 @@ fun NavGraph() {
         ) {
 
             val data = ScreenBundleUtils.parse<LibraryDetailDTO>(
-                it.arguments?.getString(libraryDetail.argName)
+                it.arguments?.getString(libraryDetail.name)
                     ?: throw IllegalStateException("LayoutDetailDTO data null")
             )
 
@@ -188,6 +209,10 @@ fun NavGraph() {
                     actions.upPress.invoke()
                 }
                 LibraryDetailDTO.Screen.Room -> LibraryRoom(
+                    hiltViewModel(it),
+                    actions
+                )
+                LibraryDetailDTO.Screen.Lottie -> LibraryLottie(
                     hiltViewModel(it),
                     actions
                 )
@@ -207,21 +232,25 @@ class MainActions(navController: NavController) {
         navController.navigate(ScreenList.Home.name)
     }
 
-    val gotoLayoutDetail: (LayoutDetailDTO) -> Unit = { dto ->
+    val gotoPopup: (PopupList) -> Unit = {
+        navController.navigate("popup/${ScreenBundleUtils.build(it)}")
+    }
+
+    val gotoLayoutDetail: (LayoutDetailDTO) -> Unit = {
         navController.navigate(
-            "${ScreenList.LayoutDetail.name}/${ScreenBundleUtils.build(dto)}"
+            "${ScreenList.LayoutDetail.name}/${ScreenBundleUtils.build(it)}"
         )
     }
 
-    val gotoComponentDetail: (ComponentDetailDTO) -> Unit = { dto ->
+    val gotoComponentDetail: (ComponentDetailDTO) -> Unit = {
         navController.navigate(
-            "${ScreenList.ComponentDetail.name}/${ScreenBundleUtils.build(dto)}"
+            "${ScreenList.ComponentDetail.name}/${ScreenBundleUtils.build(it)}"
         )
     }
 
-    val gotoLibraryDetail: (LibraryDetailDTO) -> Unit = { dto ->
+    val gotoLibraryDetail: (LibraryDetailDTO) -> Unit = {
         navController.navigate(
-            "${ScreenList.LibraryDetail.name}/${ScreenBundleUtils.build(dto)}"
+            "${ScreenList.LibraryDetail.name}/${ScreenBundleUtils.build(it)}"
         )
     }
 }
