@@ -7,6 +7,7 @@ data class LayoutDetailDTO(
         ConstraintLayout,
         ListInfinityScrollPaging3,
         CoordinatorLayout,
+        SlidingPopUp,
 
         None,
     }

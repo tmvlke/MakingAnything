@@ -32,6 +32,7 @@ import wskim.main_app.page_list.etc.EtcPopupScreen
 import wskim.main_app.page_list.layout.detail.LayoutCoordinatorLayout
 import wskim.main_app.page_list.layout.detail.LayoutExampleConstraint
 import wskim.main_app.page_list.layout.detail.LayoutExampleInfinityScrollPaging3
+import wskim.main_app.page_list.layout.detail.LayoutSlidingPopup
 import wskim.main_app.page_list.library.detail.LibraryLottie
 import wskim.main_app.page_list.library.detail.LibraryRoom
 
@@ -135,6 +136,9 @@ fun NavGraph() {
                 )
                 LayoutDetailDTO.Screen.CoordinatorLayout -> LayoutCoordinatorLayout(
                     hiltViewModel(it),
+                    actions
+                )
+                LayoutDetailDTO.Screen.SlidingPopUp -> LayoutSlidingPopup(
                     actions
                 )
             }
