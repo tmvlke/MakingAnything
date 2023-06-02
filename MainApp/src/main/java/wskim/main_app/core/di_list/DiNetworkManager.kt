@@ -1,5 +1,6 @@
 package wskim.main_app.core.di_list
 
+import system.config.BuildConfig
 import android.content.Context
 import dagger.Module
 import dagger.Provides
@@ -9,7 +10,6 @@ import dagger.hilt.components.SingletonComponent
 import wskim.corefeature.network.manager.NetworkCommonManager
 import wskim.corefeature.network.retrofit.RetrofitClient
 import wskim.corefeature.network.retrofit.ServerAPI
-import wskim.main_app.BuildConfig
 import javax.inject.Singleton
 
 @Module
@@ -19,7 +19,7 @@ class DiNetworkManager {
     @Singleton
     @Provides
     fun provideServerAPI() : ServerAPI {
-        return RetrofitClient(BuildConfig.SERVER_URL).restService
+        return RetrofitClient(BuildConfig().serverUrl).restService
     }
 
     @Singleton

@@ -107,7 +107,7 @@ android {
         testInstrumentationRunnerArguments["runnerBuilder"] = "de.mannodermaus.junit5.AndroidJUnit5Builder"
 
 
-        buildConfigField("String", "SERVER_URL", "\"https://dapi.kakao.com\"")
+//        buildConfigField("String", "SERVER_URL", "\"https://dapi.kakao.com\"")
 
 //        testInstrumentationRunner("androidx.test.runner.AndroidJUnitRunner")
 //        consumerProguardFiles("consumer-rules.pro")
@@ -137,17 +137,19 @@ android {
 
     buildFeatures {
         // AGP 9.0 이전까지만 사용하기
-        buildConfig = true
+        buildConfig = false
 
         // compose 활성화 시 주석 풀기
         compose = true
 
     }
 
+    // https://developer.android.com/studio/build?hl=ko
     flavorDimensions.add("version")
     productFlavors {
         create("dev") {
             dimension = "version"
+            applicationIdSuffix = ".dev"
 
             sourceSets {
                 getByName("main") {
@@ -156,6 +158,7 @@ android {
         }
         create("prod") {
             dimension = "version"
+            applicationIdSuffix = ".prod"
 
             sourceSets {
                 getByName("main") {
