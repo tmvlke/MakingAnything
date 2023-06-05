@@ -81,6 +81,12 @@ dependencies {
     androidTestImplementation("de.mannodermaus.junit5:android-test-core:1.3.0")
 
     androidTestRuntimeOnly("de.mannodermaus.junit5:android-test-runner:1.3.0")
+
+    // Test rules and transitive dependencies:
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.4.3")
+    // Needed for createAndroidComposeRule, but not createComposeRule:
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.4.3")
+
 }
 
 

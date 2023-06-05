@@ -26,7 +26,7 @@ android {
 
     buildFeatures {
         // AGP 9.0 이전까지만 사용하기
-        buildConfig = true
+        buildConfig = false
     }
 
     compileOptions {

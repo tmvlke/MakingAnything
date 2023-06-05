@@ -1,4 +1,4 @@
-package wskim.main_app
+package wskim.main_app.dev
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
