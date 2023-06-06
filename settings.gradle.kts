@@ -14,6 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "making-anything"
 
-include(":MainApp")
-include(":CoreFeature")
-include(":BaseLibrary")
+include(":Presentation")
+include(":Data")
+include(":Domain")
