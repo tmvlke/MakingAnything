@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
-import wskim.data.repository.LayoutExampleInfinityScrollRepository
+import wskim.data.repository.LayoutExampleInfinityScrollRepositoryImpl
 import wskim.main_app.viewmodel.LayoutExampleInfinityScrollViewModel
 
 @RunWith(MockitoJUnitRunner::class)
@@ -27,7 +27,7 @@ class ExampleUnitTest {
     private lateinit var viewModel: LayoutExampleInfinityScrollViewModel
 
     //
-    private lateinit var repository : LayoutExampleInfinityScrollRepository
+    private lateinit var repository : LayoutExampleInfinityScrollRepositoryImpl
 
     // Mock으로 생성된 Observer
     @Mock

@@ -14,13 +14,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import wskim.data.repository.LayoutExampleInfinityScrollRepository
+import wskim.domain.usecase.SearchResultUseCase
 import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
 class LayoutExampleInfinityScrollViewModel @Inject constructor(
-    private val repository : LayoutExampleInfinityScrollRepository?
+    private val repository : SearchResultUseCase?
 ) : ViewModel(){
 
     val _items = MutableStateFlow<ArrayList<String>>(arrayListOf())

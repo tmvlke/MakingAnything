@@ -1,7 +1,7 @@
 package wskim.domain.repository
 
 import wskim.domain.proguard_safe_zone.vo.ViewCountResultVO
-import wskim.domain.ui.MainTab
+import wskim.domain.ui.UiRoot
 
 interface LayoutListRepository {
 
@@ -11,11 +11,11 @@ interface LayoutListRepository {
     ) : ArrayList<String>
 
     suspend fun selectSpecificTabViewCount(
-        mainTab: MainTab
+        uiRoot: UiRoot.MainTab
     ): List<ViewCountResultVO>?
 
     suspend fun insertViewCount(
-        mainTab: MainTab,
+        uiRoot: UiRoot.MainTab,
         position: Int
     )
 }

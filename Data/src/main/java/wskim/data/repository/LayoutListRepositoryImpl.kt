@@ -3,7 +3,7 @@ package wskim.data.repository
 import wskim.data.data_source.service.LayoutListDataSource
 import wskim.domain.proguard_safe_zone.vo.ViewCountResultVO
 import wskim.domain.repository.LayoutListRepository
-import wskim.domain.ui.MainTab
+import wskim.domain.ui.UiRoot
 import javax.inject.Inject
 
 class LayoutListRepositoryImpl @Inject constructor(
@@ -18,15 +18,15 @@ class LayoutListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun selectSpecificTabViewCount(
-        mainTab: MainTab
+        uiRoot: UiRoot.MainTab
     ): List<ViewCountResultVO>? {
-        return layoutListDataSource.selectSpecificTabViewCount(mainTab)
+        return layoutListDataSource.selectSpecificTabViewCount(uiRoot)
     }
 
     override suspend fun insertViewCount(
-        mainTab: MainTab,
+        uiRoot: UiRoot.MainTab,
         position: Int
     ) {
-        layoutListDataSource.insertViewCount(mainTab, position)
+        layoutListDataSource.insertViewCount(uiRoot, position)
     }
 }

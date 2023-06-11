@@ -13,13 +13,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DiCommonManager {
+class DataCoreModule {
 
     @Singleton
     @Provides
     fun provideSharedPreferencesManager(
         @ApplicationContext context: Context
-    ) : SharedPreferencesManager {
+    ): SharedPreferencesManager {
         return SharedPreferencesManager(context)
     }
 
@@ -27,7 +27,7 @@ class DiCommonManager {
     @Provides
     fun provideWskimRoomDatabase(
         @ApplicationContext context: Context
-    ) : WskimRoomDatabase {
+    ): WskimRoomDatabase {
         return Room.databaseBuilder(
             context,
             WskimRoomDatabase::class.java,

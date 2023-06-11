@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import wskim.domain.ui.MainTab
+import wskim.domain.ui.UiRoot
 import wskim.domain.usecase.LayoutListUseCase
 import wskim.main_app.core.navigation.dto.LayoutDetailDTO
 import wskim.main_app.page_list.layout.vo.LayoutListVO
@@ -38,7 +38,7 @@ class LayoutViewModel @Inject constructor(
             // normal
             viewModelScope.launch {
                 val response = withContext(Dispatchers.IO) {
-                    mainListUseCase.selectSpecificTabViewCount(MainTab.Layout)
+                    mainListUseCase.selectSpecificTabViewCount(UiRoot.MainTab.Layout)
                 }
 
                 val result = initLayoutList().asFlow().map { data1 ->
@@ -79,7 +79,7 @@ class LayoutViewModel @Inject constructor(
 
     fun itemClick(position: Int) {
         viewModelScope.launch {
-            mainListUseCase?.insertViewCount(mainTab = MainTab.Layout, position = position)
+            mainListUseCase?.insertViewCount(uiRoot = UiRoot.MainTab.Layout, position = position)
 
             layoutList[position] = layoutList[position].apply {
                 viewCount++

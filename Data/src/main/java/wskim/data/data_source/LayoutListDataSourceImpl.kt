@@ -8,7 +8,7 @@ import wskim.data.data_source.service.LayoutListDataSource
 import wskim.data.database.WskimRoomDatabase
 import wskim.data.database.table.ViewCount
 import wskim.domain.proguard_safe_zone.vo.ViewCountResultVO
-import wskim.domain.ui.MainTab
+import wskim.domain.ui.UiRoot
 import javax.inject.Inject
 
 class LayoutListDataSourceImpl @Inject constructor(
@@ -34,19 +34,19 @@ class LayoutListDataSourceImpl @Inject constructor(
     }
 
     override suspend fun selectSpecificTabViewCount(
-        mainTab: MainTab
+        uiRoot: UiRoot.MainTab
     ): List<ViewCountResultVO>? {
         roomDatabase.viewCountDao().selectAllData()
-        return roomDatabase.viewCountDao().selectSpecificTabViewCount(mainTab)
+        return roomDatabase.viewCountDao().selectSpecificTabViewCount(uiRoot)
     }
 
     override suspend fun insertViewCount(
-        mainTab: MainTab,
+        uiRoot: UiRoot.MainTab,
         position: Int
     ) {
         roomDatabase.viewCountDao().insertOne(
             ViewCount(
-                mainTab = mainTab,
+                uiRoot = uiRoot,
                 mainTabIndex = position,
             )
         )

@@ -3,6 +3,7 @@ package wskim.data.network
 import kotlinx.coroutines.Deferred
 import retrofit2.HttpException
 import wskim.data.BaseLog
+import wskim.domain.proguard_safe_zone.network.NetworkResult
 import wskim.domain.proguard_safe_zone.network.response.BaseResponse
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

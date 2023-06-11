@@ -4,14 +4,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import wskim.data.repository.SearchResultRepository
+import wskim.data.repository.SearchResultRepositoryImpl
 import wskim.main_app.core.navigation.dto.LibraryDetailDTO
 import wskim.main_app.page_list.library.vo.LibraryListVO
 import javax.inject.Inject
 
 @HiltViewModel
 class LibraryViewModel @Inject constructor(
-    private val repository: SearchResultRepository?
+    private val repository: SearchResultRepositoryImpl?
 ) : ViewModel(){
 
     val libraryList : SnapshotStateList<LibraryListVO> = mutableStateListOf()

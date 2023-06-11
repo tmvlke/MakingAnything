@@ -1,4 +1,4 @@
-package wskim.main_app.core.di_list
+package wskim.data.di
 
 import android.content.Context
 import dagger.Module

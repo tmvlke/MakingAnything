@@ -27,7 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import wskim.data.BaseLog
-import wskim.domain.ui.MainTab
+import wskim.domain.ui.UiComponent
+import wskim.domain.ui.UiEtc
+import wskim.domain.ui.UiLayout
+import wskim.domain.ui.UiLibrary
+import wskim.domain.ui.UiRoot
 import wskim.main_app.core.navigation.MainActions
 import wskim.main_app.page_list.component.ComponentPage
 import wskim.main_app.page_list.etc.EtcPage
@@ -48,7 +52,7 @@ fun MainPage(
     actions: MainActions? = null,
 ) {
 
-    val tabs = MainTab.values().toList()
+    val tabs = UiRoot.MainTab.values().toList()
 
     val tabPagerState = rememberPagerState { tabs.size }
     val coroutineScope = rememberCoroutineScope()
@@ -85,10 +89,14 @@ fun MainPage(
                     pageContent = { page ->
                         // Our page content
                         when (page) {
-                            MainTab.Layout.ordinal -> LayoutPage(layoutViewModel, actions)
-                            MainTab.Component.ordinal -> ComponentPage(componentViewModel, actions)
-                            MainTab.Library.ordinal -> LibraryPage(libraryViewModel, actions)
-                            MainTab.Etc.ordinal -> EtcPage(actions)
+                            UiRoot.MainTab.Layout.ordinal -> LayoutPage(layoutViewModel, actions)
+                            UiRoot.MainTab.Component.ordinal -> ComponentPage(
+                                componentViewModel,
+                                actions
+                            )
+
+                            UiRoot.MainTab.Library.ordinal -> LibraryPage(libraryViewModel, actions)
+                            UiRoot.MainTab.Etc.ordinal -> EtcPage(actions)
                         }
                     }
                 )
@@ -107,7 +115,12 @@ fun MainPage(
                             Tab(
                                 text = {
                                     Text(
-                                        text = mainTab.title,
+                                        text = when (mainTab) {
+                                            UiRoot.MainTab.Layout -> UiLayout.name
+                                            UiRoot.MainTab.Component -> UiComponent.name
+                                            UiRoot.MainTab.Library -> UiLibrary.name
+                                            UiRoot.MainTab.Etc -> UiEtc.name
+                                        },
                                         fontSize = 14.sp,
                                         color = if (tabPagerState.currentPage == index) Color.Black else Color.Gray,
                                         fontWeight = if (tabPagerState.currentPage == index) FontWeight.Black else FontWeight.Normal

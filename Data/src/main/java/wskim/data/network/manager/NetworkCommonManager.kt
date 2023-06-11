@@ -2,8 +2,8 @@ package wskim.data.network.manager
 
 import android.content.Context
 import wskim.data.network.NetworkRequestCoroutine
-import wskim.data.network.NetworkResult
 import wskim.data.network.retrofit.ServerAPI
+import wskim.domain.proguard_safe_zone.network.NetworkResult
 import wskim.domain.proguard_safe_zone.network.vo.KakaoImageVO
 import wskim.domain.proguard_safe_zone.network.vo.KakaoVclipVO
 

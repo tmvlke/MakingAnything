@@ -1,6 +1,7 @@
 package wskim.data.network
 
 import wskim.domain.proguard_safe_zone.exception.base.BaseWebException
+import wskim.domain.proguard_safe_zone.network.NetworkResult
 import wskim.domain.proguard_safe_zone.network.response.BaseResponse
 import wskim.domain.proguard_safe_zone.network.vo.KakaoMetaVO
 

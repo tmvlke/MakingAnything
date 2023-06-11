@@ -1,4 +1,4 @@
-package wskim.data.network
+package wskim.domain.proguard_safe_zone.network
 
 import wskim.domain.proguard_safe_zone.network.vo.KakaoMetaVO
 

@@ -1,7 +1,7 @@
 package wskim.data.data_source.service
 
 import wskim.domain.proguard_safe_zone.vo.ViewCountResultVO
-import wskim.domain.ui.MainTab
+import wskim.domain.ui.UiRoot
 
 interface LayoutListDataSource {
     suspend fun selectDummyData(
@@ -10,11 +10,11 @@ interface LayoutListDataSource {
     ) : ArrayList<String>
 
     suspend fun selectSpecificTabViewCount(
-        mainTab: MainTab
+        uiRoot: UiRoot.MainTab
     ): List<ViewCountResultVO>?
 
     suspend fun insertViewCount(
-        mainTab: MainTab,
+        uiRoot: UiRoot.MainTab,
         position: Int
     )
 }

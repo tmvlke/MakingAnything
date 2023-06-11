@@ -5,15 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.greenrobot.eventbus.EventBus
-import wskim.data.repository.SearchResultRepository
 import wskim.domain.proguard_safe_zone.network.vo.KakaoIntegrationContentListVO
 import wskim.domain.proguard_safe_zone.network.vo.KakaoIntegrationContentVO
+import wskim.domain.usecase.SearchResultUseCase
 import javax.inject.Inject
 import kotlin.streams.toList
 
 @HiltViewModel
 class BucketViewModel @Inject constructor(
-    private val repository : SearchResultRepository
+    private val repository : SearchResultUseCase
 ) : ViewModel(){
 
     private val _contentList : MutableLiveData<KakaoIntegrationContentListVO> = MutableLiveData<KakaoIntegrationContentListVO>()

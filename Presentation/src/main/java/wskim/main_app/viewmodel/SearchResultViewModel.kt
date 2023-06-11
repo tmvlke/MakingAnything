@@ -11,8 +11,8 @@ import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import wskim.data.network.NetworkResult
-import wskim.data.repository.SearchResultRepository
+import wskim.data.repository.SearchResultRepositoryImpl
+import wskim.domain.proguard_safe_zone.network.NetworkResult
 import wskim.domain.proguard_safe_zone.network.enum.KakaoIntegrationContentTypeEnum
 import wskim.domain.proguard_safe_zone.network.vo.KakaoIntegrationContentListVO
 import wskim.domain.proguard_safe_zone.network.vo.KakaoIntegrationContentVO
@@ -23,7 +23,7 @@ import kotlin.streams.toList
 
 @HiltViewModel
 class SearchResultViewModel @Inject constructor(
-    private val repository : SearchResultRepository
+    private val repository : SearchResultRepositoryImpl
 ) : ViewModel(){
 
     private val _initUi : MutableLiveData<Any> = MutableLiveData<Any>()

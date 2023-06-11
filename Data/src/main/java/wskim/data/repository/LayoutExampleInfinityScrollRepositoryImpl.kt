@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.toList
 import wskim.data.preferences.SharedPreferencesManager
+import wskim.domain.repository.LayoutExampleInfinityScrollRepository
 
-@Deprecated("삭제 예정")
-class LayoutExampleInfinityScrollRepository(
+class LayoutExampleInfinityScrollRepositoryImpl(
     private val sharedPreferencesManager: SharedPreferencesManager
-    ) {
+) : LayoutExampleInfinityScrollRepository {
 
     private fun makeDummyList(): ArrayList<String> {
         val dummyList = arrayListOf<String>()
@@ -20,12 +20,12 @@ class LayoutExampleInfinityScrollRepository(
         return dummyList
     }
 
-    suspend fun selectDummyData(
-        page: Int = 1,
-        count: Int = 20
-    ) : ArrayList<String> {
+    override suspend fun selectDummyData(
+        page: Int,
+        count: Int
+    ): ArrayList<String> {
         val allData = makeDummyList()
 
-        return allData.asFlow().drop((page-1) * count).take(count).toList() as ArrayList<String>
+        return allData.asFlow().drop((page - 1) * count).take(count).toList() as ArrayList<String>
     }
 }

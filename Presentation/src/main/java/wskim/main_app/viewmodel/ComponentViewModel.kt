@@ -7,12 +7,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import wskim.data.repository.SearchResultRepository
+import wskim.domain.usecase.SearchResultUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class ComponentViewModel @Inject constructor(
-    private val repository : SearchResultRepository?
+    private val repository : SearchResultUseCase?
 ) : ViewModel(){
 
     val componentList : SnapshotStateList<String> = mutableStateListOf()
