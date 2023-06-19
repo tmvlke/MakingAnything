@@ -62,6 +62,7 @@ class LayoutViewModel @Inject constructor(
             LayoutListVO(text = "리스트 무한 스크롤(paging3)", screen = LayoutDetailDTO.Screen.ListInfinityScrollPaging3),
             LayoutListVO(text = "CoordinatorLayout", screen = LayoutDetailDTO.Screen.CoordinatorLayout),
             LayoutListVO(text = "SlidingPopUp", screen = LayoutDetailDTO.Screen.SlidingPopUp),
+            LayoutListVO(text = "TextField", screen = LayoutDetailDTO.Screen.TextField),
         ).apply {
             this.forEachIndexed { index, layoutListVO ->
                 layoutListVO.index = index

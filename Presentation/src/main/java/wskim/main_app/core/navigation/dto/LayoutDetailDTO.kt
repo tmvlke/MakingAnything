@@ -8,6 +8,7 @@ data class LayoutDetailDTO(
         ListInfinityScrollPaging3,
         CoordinatorLayout,
         SlidingPopUp,
+        TextField,
 
         None,
     }

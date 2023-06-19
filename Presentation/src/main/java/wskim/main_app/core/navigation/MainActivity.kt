@@ -30,6 +30,7 @@ import wskim.main_app.page_list.layout.detail.LayoutCoordinatorLayout
 import wskim.main_app.page_list.layout.detail.LayoutExampleConstraint
 import wskim.main_app.page_list.layout.detail.LayoutExampleInfinityScrollPaging3
 import wskim.main_app.page_list.layout.detail.LayoutSlidingPopup
+import wskim.main_app.page_list.layout.detail.LayoutTextField
 import wskim.main_app.page_list.library.detail.LibraryLottie
 import wskim.main_app.page_list.library.detail.LibraryRoom
 import wskim.main_app.viewmodel.ComponentViewModel
@@ -139,6 +140,10 @@ fun NavGraph() {
                     actions
                 )
                 LayoutDetailDTO.Screen.SlidingPopUp -> LayoutSlidingPopup(
+                    actions
+                )
+                LayoutDetailDTO.Screen.TextField -> LayoutTextField(
+                    hiltViewModel(it),
                     actions
                 )
             }
